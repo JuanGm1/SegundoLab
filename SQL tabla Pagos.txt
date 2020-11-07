@@ -1,0 +1,12 @@
+CREATE TABLE pago(
+id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+nombre_cliente varchar(50) NOT NULL,
+numero_tarjeta varchar(20) NOT NULL,
+cvv varchar(3) NOT NULL,
+tipo_tarjeta varchar (18) NOT NULL,
+valor_transaccion double NOT NULL,
+fecha_vencimiento varchar(10) NOT NULL,
+fecha_transaccion varchar(30),
+email varchar(50) NOT NULL,
+PRIMARY KEY(ID)
+)
