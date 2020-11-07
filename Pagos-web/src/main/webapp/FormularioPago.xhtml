@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+ 
+        
+        <f:view> 
+            <h:form>
+                <h1><h:outputText value="Formulario de pago"/></h1>
+                <h:panelGrid columns="3">
+                 
+                    <h:outputLabel value="Nombre:" for="nombreCliente" />
+                    <h:inputText id="nombreCliente" value="#{pagosMBean.pago.nombreCliente}" required="true" title="Nombre" requiredMessage="El campo de nombre es requerido."/>
+                    <h:message for="nombreCliente" style="color: red"/>
+                   
+                    <h:outputLabel value="Numero Tarjeta:" for="numeroTarjeta" />
+                    <h:inputText id="numeroTarjeta" value="#{pagosMBean.pago.numeroTarjeta}" validator="#{pagosMBean.avisoTarjeta}" required="true" title="Tarjet" requiredMessage="El numero de tarjeta es requerido."/>                     
+                    <h:message for="numeroTarjeta" style="color: red"/>                   
+                    
+                    <h:outputLabel value="CVV:" for="cvv" />
+                    <h:inputText id="cvv" value="#{pagosMBean.pago.cvv}" title="CVV" required="true" requiredMessage="El campo del cvv es requerido." label="El valor no es de 3 digitos">
+                        <f:validateLength minimum="3" maximum="3"/>
+                    </h:inputText>
+                    <h:message for="cvv" style="color: red"/>
+                                  
+                    <h:outputLabel value="Valor a pagar:" for="valorTransaccion" />
+                    <h:inputText id="valorTransaccion" value="#{pagosMBean.pago.valorTransaccion}" required="true" requiredMessage="El valor a pagar es requerido" title="Payment" label="Valor a pagar entre 500 y 10000">
+                        <f:validateLongRange for="valorTransaccion" minimum="500" maximum="10000"/>  
+                    </h:inputText>
+                    <h:message for="valorTransaccion" style="color: red"/>
+                    
+                    <h:outputLabel value="Fecha de vencimiento de tarjeta:" for="fechaVencimiento" />
+                    <h:inputText id="fechaVencimiento" value="#{pagosMBean.pago.fechaVencimiento}" validator="#{pagosMBean.validarFecha}" title="DateF" required="true" requiredMessage="La fecha de vencimiento es requerida."/>
+                    <h:message for="fechaVencimiento" style="color: red"/>
+                    
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{pagosMBean.pago.email}" validator="#{pagosMBean.validarEmail}" title="Email" required="true" requiredMessage="El campo del email es requerido."/>
+                    <h:message for="email" style="color: red"/>                 
+                                                   
+                </h:panelGrid>
+               
+                <h:commandButton id="create" value="PAGAR"  action="#{pagosMBean.addPayment}"/>   
+                <br></br>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Cancelar" action="#{pagosMBean.cancel}"/>
+            </h:form>             
+        </f:view>
+
+    </h:body> 
+    
+</html>
+
